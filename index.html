@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Focus — Productivity Dashboard</title>
+    <link rel="stylesheet" href="index.css">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+</head>
+
+<body>
+
+    
+    <header class="topbar">
+
+       
+        <div class="top-left">
+            <div class="logo-dot"></div>
+            <span class="logo-name">PULSE <span class="logo-dot-text">·</span>
+            <span>Productivity Dashboard</span>
+        </div>
+
+        
+        <div class="top-center">
+            <span class="live-time" id="liveTime">00:00:00</span>
+            <span class="time-sep">—</span>
+            <span class="live-date" id="liveDate">Monday</span>
+        </div>
+
+        
+        <div class="top-right">
+            <span class="greeting-badge" id="greetingBadge">Good Morning</span>
+            <button class="theme-btn" id="themeBtn">☽</button>
+        </div>
+
+    </header>
+
+
+    
+    <div class="page-wrapper">
+        <div class="bento-grid">
+
+
+           
+            <div class="bento-card card-todo">
+
+                <div class="card-top">
+                    <div class="card-label">
+                        <span class="card-icon todo-icon">✓</span>
+                        Todo List
+                    </div>
+                    <button class="small-btn" id="clearDoneBtn">Clear done</button>
+                </div>
+
+                
+                <div class="todo-stats-row">
+                    <div class="stat-box">
+                        <span class="stat-num" id="todoPending">0</span>
+                        <span class="stat-label">Pending</span>
+                    </div>
+                    <div class="stat-box stat-done">
+                        <span class="stat-num" id="todoDone">0</span>
+                        <span class="stat-label">Done</span>
+                    </div>
+                </div>
+
+                
+                <div class="input-row">
+                    <input type="text" class="text-input" id="todoInput" placeholder="Add a new task...">
+                    <button class="add-btn" id="todoAddBtn">+ Add</button>
+                </div>
+
+                
+                <div class="filter-row">
+                    <button class="filter-btn active" data-filter="all">All</button>
+                    <button class="filter-btn" data-filter="pending">Pending</button>
+                    <button class="filter-btn" data-filter="starred">Starred</button>
+                    <button class="filter-btn" data-filter="done">Done</button>
+                </div>
+
+                
+                <ul class="todo-list" id="todoList">
+                    <li class="empty-msg">No tasks yet. Add one above.</li>
+                </ul>
+
+            </div>
+
+
+          
+            <div class="bento-card card-pomo">
+
+                <div class="card-top">
+                    <div class="card-label">
+                        <span class="card-icon pomo-icon">⏱</span>
+                        Pomodoro
+                    </div>
+                </div>
+
+               
+                <div class="pomo-modes">
+                    <button class="mode-btn active" data-mode="work">Work · 25m</button>
+                    <button class="mode-btn" data-mode="short">Short · 5m</button>
+                    <button class="mode-btn" data-mode="long">Long · 15m</button>
+                </div>
+
+               
+                <div class="pomo-ring-wrap">
+                    <svg class="pomo-svg" viewBox="0 0 140 140">
+                        
+                        <circle class="ring-track" cx="70" cy="70" r="60" />
+                      
+                        <circle class="ring-fill" cx="70" cy="70" r="60" id="pomoRing" />
+                    </svg>
+                   
+                    <div class="pomo-time-text" id="pomoDisplay">25:00</div>
+                </div>
+
+                <div class="pomo-session-tag" id="pomoTag">WORK SESSION</div>
+
+              
+                <div class="pomo-btns">
+                    <button class="pomo-btn btn-start" id="pomoStart">▶ Start</button>
+                    <button class="pomo-btn btn-pause" id="pomoPause" disabled>⏸</button>
+                    <button class="pomo-btn btn-reset" id="pomoReset">↺</button>
+                </div>
+
+                <div class="session-dots" id="sessionDots">
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+
+            </div>
+
+
+           
+            <div class="bento-card card-weather">
+
+                <div class="card-top">
+                    <div class="card-label">
+                        <span class="card-icon wx-icon">⛅</span>
+                        Weather
+                    </div>
+                    <button class="small-btn" id="wxRefreshBtn">↺ Refresh</button>
+                </div>
+
+                <div id="wxContent">
+                    <p class="wx-loading">Fetching your location...</p>
+                </div>
+
+            </div>
+
+
+         
+            <div class="bento-card card-quote">
+
+                <div class="card-top">
+                    <div class="card-label">
+                        <span class="card-icon quote-icon">"</span>
+                        Motivation
+                    </div>
+                </div>
+
+                <div class="quote-big-mark">"</div>
+                <p class="quote-text" id="quoteText">Loading a quote...</p>
+                <p class="quote-author" id="quoteAuthor">— —</p>
+                <button class="quote-btn" id="quoteRefreshBtn">New Quote →</button>
+
+            </div>
+
+
+           
+            <div class="bento-card card-goals">
+
+                <div class="card-top">
+                    <div class="card-label">
+                        <span class="card-icon goals-icon">◎</span>
+                        Daily Goals
+                    </div>
+                    <span class="goals-pct" id="goalsPct">0%</span>
+                </div>
+
+                
+                <div class="progress-bar-bg">
+                    <div class="progress-bar-fill" id="goalsProgressBar"></div>
+                </div>
+                <p class="goals-count-label" id="goalsCountLabel">0 of 0 done</p>
+
+                
+                <div class="input-row">
+                    <input type="text" class="text-input" id="goalInput" placeholder="Add a goal...">
+                    <button class="add-btn" id="goalAddBtn">+</button>
+                </div>
+
+                <ul class="goals-list" id="goalList">
+                    <li class="empty-msg">No goals yet.</li>
+                </ul>
+
+            </div>
+
+
+            
+            <div class="bento-card card-planner">
+
+                <div class="card-top">
+                    <div class="card-label">
+                        <span class="card-icon planner-icon">📅</span>
+                        Daily Planner
+                    </div>
+                    <span class="planner-date" id="plannerDate">Today</span>
+                </div>
+
+               
+                <div class="planner-scroll" id="plannerScroll">
+                   
+                </div>
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+    <script src="index.js"></script>
+
+</body>
+</html>
